@@ -1,0 +1,25 @@
+# This is a dockerfile for development only
+FROM node:18-alpine
+ENV NODE_ENV=development
+
+
+
+# Create a group and user
+
+
+# Create app folder and copy package.json and yarn.lock
+WORKDIR /app
+COPY package.json .
+COPY yarn.lock .
+
+# Install dependencies
+RUN yarn install
+
+# Copy the rest of the files
+COPY . .
+
+# Expose port 3000
+EXPOSE 3000
+
+# Start the app
+CMD ["yarn", "start"]
